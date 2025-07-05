@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('teachers', TeacherController::class);
         Route::resource('courses', CourseController::class);
         Route::post('courses/{course}/assign-teacher', [CourseController::class, 'assignTeacher'])->name('courses.assign-teacher');
+        Route::delete('courses/{course}/teachers/{teacher}', [CourseController::class, 'removeTeacher'])->name('courses.remove-teacher');
+        Route::post('courses/{course}/enroll-student', [CourseController::class, 'enrollStudent'])->name('courses.enroll-student');
     });
 
     // Teacher routes

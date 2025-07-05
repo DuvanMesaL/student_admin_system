@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Teacher;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,5 +91,27 @@ class CourseController extends Controller
         $courses = $teacher->courses()->with('enrollments.student')->get();
 
         return view('courses.my-courses', compact('courses'));
+    }
+
+    public function removeTeacher(Course $course, Teacher $teacher)
+    {
+        $course->teachers()->detach($teacher->id);
+        return redirect()->route('courses.show', $course)->with('success', 'Teacher removed from course successfully.');
+    }
+
+    public function enrollStudent(Request $request, Course $course)
+    {
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'enrollment_date' => 'required|date',
+        ]);
+
+        Enrollment::create([
+            'student_id' => $request->student_id,
+            'course_id' => $course->id,
+            'enrollment_date' => $request->enrollment_date,
+        ]);
+
+        return redirect()->route('courses.show', $course)->with('success', 'Student enrolled successfully.');
     }
 }
