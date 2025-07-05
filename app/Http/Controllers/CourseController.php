@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -85,7 +86,7 @@ class CourseController extends Controller
 
     public function myCourses()
     {
-        $teacher = auth()->user()->teacher;
+        $teacher =  Auth::user()->teacher;
         $courses = $teacher->courses()->with('enrollments.student')->get();
 
         return view('courses.my-courses', compact('courses'));

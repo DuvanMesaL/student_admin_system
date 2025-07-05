@@ -8,12 +8,14 @@ use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
 
         switch ($user->role) {
             case 'admin':
@@ -44,7 +46,7 @@ class DashboardController extends Controller
 
     private function teacherDashboard()
     {
-        $teacher = auth()->user()->teacher;
+        $teacher = Auth::user()->teacher;
 
         if (!$teacher) {
             return redirect()->route('profile.complete');
@@ -60,7 +62,7 @@ class DashboardController extends Controller
 
     private function studentDashboard()
     {
-        $student = auth()->user()->student;
+        $student = Auth::user()->student;
 
         if (!$student) {
             return redirect()->route('profile.complete');
