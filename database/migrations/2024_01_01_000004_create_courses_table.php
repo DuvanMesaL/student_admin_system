@@ -10,14 +10,18 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('course_code')->unique();
+            $table->string('code')->unique();
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('credits');
-            $table->string('level');
+            $table->string('level')->nullable();
             $table->string('schedule')->nullable();
+            $table->string('classroom')->nullable();
+            $table->integer('max_students')->default(0);
+            $table->string('status')->default('active');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+
         });
     }
 

@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('enrollment_id')->constrained()->onDelete('cascade');
-            $table->string('evaluation_type'); // midterm, final, assignment, quiz, etc.
-            $table->decimal('score', 5, 2);
-            $table->decimal('max_score', 5, 2)->default(100);
-            $table->date('evaluation_date');
+            $table->string('grade_type'); // midterm, final, assignment, quiz, etc.
+            $table->decimal('grade', 5, 2);
+            $table->decimal('max_grade', 5, 2)->default(100);
+            $table->date('graded_at');
             $table->text('comments')->nullable();
             $table->timestamps();
         });

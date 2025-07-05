@@ -117,7 +117,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h4>{{ $teachers->flatMap->courses->unique()->count() }}</h4>
+                        <h4>{{ $teachers->getCollection()->flatMap->courses->unique()->count() }}</h4>
                         <p class="mb-0">Courses Taught</p>
                     </div>
                     <div class="align-self-center">
@@ -133,7 +133,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h4>{{ $teachers->flatMap->courses->groupBy('specialization')->count() }}</h4>
+                        <h4>{{ $teachers->getCollection()->flatMap->courses->groupBy('specialization')->count() }}</h4>
                         <p class="mb-0">Specializations</p>
                     </div>
                     <div class="align-self-center">

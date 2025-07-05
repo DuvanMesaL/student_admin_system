@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('birth_date');
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
+            $table->string('level')->nullable();
+            $table->string('status')->default('active');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

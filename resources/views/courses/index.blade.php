@@ -125,7 +125,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h4>{{ $courses->flatMap->enrollments->count() }}</h4>
+                        <h4>{{ $courses->getCollection()->flatMap->enrollments->count() }}</h4>
                         <p class="mb-0">Total Enrollments</p>
                     </div>
                     <div class="align-self-center">

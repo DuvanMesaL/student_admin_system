@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('document_number')->unique();
             $table->string('specialization');
+            $table->string('status')->default('active');
             $table->string('phone')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
