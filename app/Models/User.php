@@ -15,7 +15,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'active',
+        'is_active',
     ];
 
     protected $hidden = [
@@ -25,17 +25,17 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'active' => 'boolean',
+        'is_active' => 'boolean',
     ];
 
-    public function estudiante()
+    public function student()
     {
-        return $this->hasOne(Estudiante::class);
+        return $this->hasOne(Student::class);
     }
 
-    public function docente()
+    public function teacher()
     {
-        return $this->hasOne(Docente::class);
+        return $this->hasOne(Teacher::class);
     }
 
     public function isAdmin()
@@ -43,13 +43,13 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    public function isDocente()
+    public function isTeacher()
     {
-        return $this->role === 'docente';
+        return $this->role === 'teacher';
     }
 
-    public function isEstudiante()
+    public function isStudent()
     {
-        return $this->role === 'estudiante';
+        return $this->role === 'student';
     }
 }
